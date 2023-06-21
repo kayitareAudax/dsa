@@ -66,11 +66,6 @@ public:
         try
         {
             // Add an item to the inventory
-            if (item_name.empty() || item_registration_date.empty())
-            {
-                cout << "Please enter all data" << endl;
-                return;
-            }
             if (item_registration_date.size() != 10)
             {
                 throw runtime_error("Please enter a valid date of format yyyy-mm-dd");
@@ -101,7 +96,6 @@ public:
                 if (tokens.size() >= 1)
                 {
                     int existing_id = stoi(tokens[0]);
-
                     if (existing_id == item_id)
                     {
                         in_file.close();
@@ -200,17 +194,17 @@ public:
         cout << "-------------------------------------------------------------" << endl;
         cout << "*                        Command syntaxes                   *" << endl;
         cout << "-------------------------------------------------------------" << endl;
-        cout << "                            itemadd <item_id> <item_name> <quantity> <registration_date>" << endl;
-        cout << "                            itemslist" << endl;
+        cout << "                         itemadd <item_id> <item_name> <quantity> <registration_date>" << endl;
+        cout << "                         itemslist" << endl;
     }
 };
 
 int main()
 {
     InventorySystem inventory;
-    cout << "++++++++++++++++++++++++++++++++++++++++++++++" << endl;
+    cout << "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" << endl;
     cout << "RCA      INVENTORY           SYSTEM" << endl;
-    cout << "++++++++++++++++++++++++++++++++++++++++++++++" << endl;
+    cout << "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" << endl;
     cout << endl;
     inventory.help();
     string option;
@@ -238,7 +232,8 @@ int main()
                 {
                     throw runtime_error("Item_quantity should a number");
                 }
-                if(!inventory.is_valid_date(tokens[4])){
+                if (!inventory.is_valid_date(tokens[4]))
+                {
                     throw runtime_error("please enter date in format yyyy-mm-dd");
                 }
                 int id = stoi(tokens[1]);
@@ -266,7 +261,7 @@ int main()
         }
         else
         {
-            cout << "Please enter a valid command." << endl;
+            cout << "Please enter a valid command as from this list below!!." << endl;
             inventory.help();
         }
 
