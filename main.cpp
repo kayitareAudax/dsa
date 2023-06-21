@@ -16,8 +16,8 @@ private:
     static bool compare_by_name(const string &item1, const string &item2)
     {
         InventorySystem inventorySystem;
-        vector<string> tokens1 = inventorySystem.tokenizer(item1, ' ');
-        vector<string> tokens2 = inventorySystem.tokenizer(item2, ' ');
+        vector<string> tokens1 = inventorySystem.tokenizer(item1, ',');
+        vector<string> tokens2 = inventorySystem.tokenizer(item2, ' ,');
 
         if (tokens1.size() >= 4 && tokens2.size() >= 4)
         {
@@ -91,7 +91,7 @@ public:
             string item;
             while (getline(in_file, item))
             {
-                vector<string> tokens = tokenizer(item, ' ');
+                vector<string> tokens = tokenizer(item, ',');
 
                 if (tokens.size() >= 1)
                 {
@@ -105,7 +105,7 @@ public:
             }
 
             in_file.close();
-            outputFile << item_id << " " << item_name << " " << to_string(item_quantity) << " " << item_registration_date << endl;
+            outputFile << item_id << "," << item_name << "," << to_string(item_quantity) << "," << item_registration_date << endl;
             cout << "Item added to inventory" << endl;
             outputFile.close();
         }
@@ -148,11 +148,11 @@ public:
 
             while (getline(in_file, line))
             {
-                vector<string> tokens = tokenizer(line, ' ');
+                vector<string> tokens = tokenizer(line, ',');
 
                 if (tokens.size() >= 4)
                 {
-                    string formattedItem = tokens[0] + " " + tokens[1] + " " + tokens[2] + " " + tokens[3];
+                    string formattedItem = tokens[0] + "," + tokens[1] + "," + tokens[2] + "," + tokens[3];
                     result.push_back(formattedItem);
                 }
             }
@@ -165,7 +165,7 @@ public:
             // Display the sorted items
             for (const string &item : result)
             {
-                vector<string> tokens = tokenizer(item, ' ');
+                vector<string> tokens = tokenizer(item, ',');
                 cout << "Item ID: " << setw(8) << left << tokens[0]
                      << "Item Name: " << setw(15) << left << tokens[1]
                      << "Quantity: " << setw(8) << left << tokens[2]
